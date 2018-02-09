@@ -1,0 +1,144 @@
+{
+  "name": "City",
+  "options": {
+    "idInjection": false,
+    "mysql": {
+      "schema": "grandlyon",
+      "table": "fed_commune"
+    }
+  },
+  "properties": {
+    "code": {
+      "type": "String",
+      "id": true,
+      "length": 5,
+      "mysql": {
+        "columnName": "NUCOMMUNE",
+        "dataType": "char",
+        "dataLength": 5,
+        "nullable": "N"
+      }
+    },
+    "name": {
+      "type": "String",
+      "required": true,
+      "length": 30,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "NMCOMMUNE",
+        "dataType": "varchar",
+        "dataLength": 30,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "nameMin": {
+      "type": "String",
+      "required": true,
+      "length": 30,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "NMCOMMUNE_MIN",
+        "dataType": "varchar",
+        "dataLength": 30,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "N"
+      }
+    },
+    "postalCode": {
+      "type": "String",
+      "required": false,
+      "length": 5,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "CDPOST",
+        "dataType": "char",
+        "dataLength": 5,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "Y"
+      }
+    },
+    "mayorName": {
+      "type": "String",
+      "required": false,
+      "length": 30,
+      "precision": null,
+      "scale": null,
+      "mysql": {
+        "columnName": "NMMAIRE",
+        "dataType": "varchar",
+        "dataLength": 30,
+        "dataPrecision": null,
+        "dataScale": null,
+        "nullable": "Y"
+      }
+    },
+    "inhabitants": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "NBHABITANT",
+        "dataType": "decimal",
+        "dataLength": null,
+        "dataPrecision": 10,
+        "dataScale": 0,
+        "nullable": "Y"
+      }
+    },
+    "income": {
+      "type": "String",
+      "required": false,
+      "length": null,
+      "default": "N",
+      "precision": 10,
+      "scale": 0,
+      "mysql": {
+        "columnName": "INCOM_URB",
+        "dataType": "char",
+        "dataLength": 1,
+        "nullable": "N"
+      }
+    }
+  },
+  "validations": [],
+  "relations": {
+    "roads": {
+      "type": "hasMany",
+      "model": "Road",
+      "foreignKey": "cityCode"
+    }
+  },
+  "mixins": {
+    "IntegrityCheck": {}
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

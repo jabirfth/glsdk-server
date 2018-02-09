@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models",
+      "../node_modules/loopback-component-passport/lib/models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins",
+      "../node_modules/@mean-expert/loopback-stats-mixin/dist",
+      "../node_modules/@mean-expert/loopback-component-realtime/dist/mixins",
+      "../node_modules/loopback-ds-timestamp-mixin"
+    ]
+  },
+  "ApplicationCredential": {
+    "dataSource": "authDB",
+    "public": false
+  },
+  "UserCredential": {
+    "dataSource": "authDB",
+    "public": false
+  },
+  "UserIdentity": {
+    "dataSource": "authDB",
+    "public": false
+  },
+  "User": {
+    "dataSource": "authDB",
+    "public": true,
+    "relations": {
+      "roles": {
+        "type": "hasMany",
+        "model": "Role",
+        "foreignKey": "principalId",
+        "through": "RoleMapping"
+      }
+    },
+    "acls": [
+      {
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "DENY"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "$owner",
+        "permission": "ALLOW",
+        "accessType": "*"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "admin",
+        "permission": "ALLOW",
+        "accessType": "*"
+      }
+    ]
+  },
+  "AccessToken": {
+    "dataSource": "authDB",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "authDB",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "authDB",
+    "public": true,
+    "acls": [
+      {
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "DENY"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "admin",
+        "permission": "ALLOW",
+        "accessType": "*"
+      }
+    ]
+  },
+  "Role": {
+    "dataSource": "authDB",
+    "public": true,
+    "acls": [
+      {
+        "accessType": "*",
+        "principalType": "ROLE",
+        "principalId": "$everyone",
+        "permission": "DENY"
+      },
+      {
+        "principalType": "ROLE",
+        "principalId": "admin",
+        "permission": "ALLOW",
+        "accessType": "*"
+      }
+    ]
+  },
+  "City": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "AgentRank": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "Road": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "Agent": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "Department": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "StorageContainer": {
+    "dataSource": "fileStorage",
+    "public": true
+  },
+  "AgentAssignment": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "Order": {
+    "dataSource": "federalDB",
+    "public": true
+  },
+  "OrderContribution": {
+    "dataSource": "federalDB",
+    "public": true
+  }
+}

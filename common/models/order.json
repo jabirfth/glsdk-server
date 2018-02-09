@@ -1,0 +1,59 @@
+{
+  "name": "Order",
+  "base": "PersistedModel",
+  "mixins": {
+  },
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "forceId": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "amount": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "contributions": {
+      "type": "hasMany",
+      "model": "OrderContribution",
+      "foreignKey": "orderId"
+    }
+  },
+  "mixins": {
+    "IntegrityCheck": {}
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "Role",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "Role",
+      "principalId": "agent",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "Role",
+      "principalId": "agent",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "Role",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

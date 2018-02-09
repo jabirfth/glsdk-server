@@ -1,0 +1,13 @@
+{
+  "name": "passport-france-connect",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "UNLICENSED",
+  "description": "api-server",
+  "dependencies": {
+    "passport-oauth2": "^1.4.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": ["loopback", "eslint-config-airbnb-base"],
+  "rules": {
+    "func-names": ["off"],
+    "no-unused-vars": ["error", { "vars": "local", "args": "none" }],
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+    "function-paren-newline": ["off"]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": true,
+      "eslint-import-resolver-typescript": true
+    }
+  }
+}

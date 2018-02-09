@@ -1,0 +1,23 @@
+{
+  "loopback-component-explorer": {
+    "mountPath": "/explorer"
+  },
+  "loopback-component-auto-migrate": {
+    "enabled": true,
+    "raiseError": true,
+    "migration": "auto-update",
+    "models": [
+      "ApplicationCredential",
+      "UserCredential",
+      "UserIdentity",
+      "User",
+      "AccessToken",
+      "ACL",
+      "RoleMapping",
+      "Role",
+      "AgentAssignment",
+      "Order",
+      "OrderContribution"
+    ]
+  }
+}
