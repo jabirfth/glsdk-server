@@ -39,13 +39,13 @@ class CreateDefaultAdmin {
                 where: {
                   principalId: user.id,
                   roleId: result[0].id,
-                }
+                },
               },
               {
                 principalType: app.models.RoleMapping.USER,
                 principalId: user.id,
                 roleId: result[0].id,
-              }
+              },
             );
           }).then((result) => {
             resolve(!!result);
@@ -53,9 +53,8 @@ class CreateDefaultAdmin {
             reject(err);
           });
         });
-      } else {
-        logger.info('Admin user already exists');
       }
+      logger.info('Admin user already exists');
     }).then((created) => {
       if (created) {
         logger.info('Admin user created');
