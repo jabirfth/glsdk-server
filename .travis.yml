@@ -1,0 +1,20 @@
+sudo: required
+
+language: generic
+
+env:
+  global:
+    secure: KqZUEX7eBuKmk46yYlwj1kMxVNZFtVSLczeCP1CCmlRLbWYarDvebOSjiVhq9kJO/ZYBNjbQ35mEA3504H2d4lekLtcKGE1HOU608R2tnwT7dIv2OhEiCw/iuNi+ePPFrHa8N2J8mRs9R9+6o/+6Dr9Ax8gem9YkuMDd5dfdbfxeL+lUA7aoI2nmhIfrZBTHc/4TaU6uMWZqcAZLiy/5dS12N23CB5Twoubu4GONr5nB+FdXnXezHxzp0D3yhnA1nStrdu3sia5kTmPQV721vTqowdafo2QHf+OrEt61nLwebMULwgyIhV/3oojoHL+zGsTCUTTgkODGgLyrLfqAr5YdiDOST8cgtuNPEN1pvDi2YLB8MAVIefZg0GH+a3N+tBPjiwjpeXg5nW25dpsP2EUWsKB6rOadCdybbQ0ij3McZZ4LSq6WpchqxAEQNHtCcyJ8VzPoCCPS/xPi21fTjuIU4UA9ScqA2Kg3jw2jFCAuw1O5OG54gLO1dqtVL5p8QiYXgV7VWSPRHcqfUOb1ZOT3JY+cvqT4o66trmZ3EMUMO170jGobvPhkmAxmBcvKhU0NrneFJzNJjPIE9ecB3OTXHh8vutYL6M2e2AfwVL56wvCBI5/toA58gWdetfo2+tcRiPXn1pHYoixnUN+k1MNs/VbI75nme4Ffd35CGhA=
+
+services:
+  - docker
+
+script:
+  - set -e
+  - export REPO=grandlyon/glsdk-server
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
+  - echo $REPO:$TAG:$TRAVIS_BUILD_NUMBER
+  - docker build -t $REPO:$TRAVIS_BUILD_NUMBER .
+  - docker tag $REPO:$TRAVIS_BUILD_NUMBER $REPO:$TAG
+  - docker push $REPO
