@@ -7,24 +7,29 @@ const logger = new Logger('CreateDefaultAdmin BootScript');
 class CreateDefaultAdmin {
 
   constructor(app: any) {
-    app.models.User.findOrCreate(
-      {
-        where: {
-          username: 'admin',
-        },
-      },
-      {
-        username: 'admin',
-        email: 'admin@admin.com',
-        password: 'admin',
-      },
-    ).then((result) => {
-      const user = result[0];
-      const created = result[1];
-      if (created) {
-        logger.info('Admin user does not exist');
-        return new Promise((resolve, reject) => {
-          app.models.Role.findOrCreate(
+    this.createAdmin(app);
+  }
+
+  async createAdmin(app: any) {
+    try {
+      await app.dataSources.authDB.transaction(async (models) => {
+        const { User, Role, RoleMapping } = models;
+        const results = await User.findOrCreate(
+          {
+            where: {
+              username: 'admin',
+            },
+          },
+          {
+            username: 'admin',
+            email: 'admin@admin.com',
+            password: 'admin',
+          },
+        );
+        const user = results[0];
+        const created = results[1];
+        if (created) {
+          const results = await Role.findOrCreate(
             {
               where: {
                 name: 'admin',
@@ -33,35 +38,28 @@ class CreateDefaultAdmin {
             {
               name: 'admin',
             },
-          ).then((result) => {
-            return app.models.RoleMapping.findOrCreate(
-              {
-                where: {
-                  principalId: user.id,
-                  roleId: result[0].id,
-                },
-              },
-              {
-                principalType: app.models.RoleMapping.USER,
+          );
+          await RoleMapping.findOrCreate(
+            {
+              where: {
                 principalId: user.id,
-                roleId: result[0].id,
+                roleId: results[0].id,
               },
-            );
-          }).then((result) => {
-            resolve(!!result);
-          }).catch((err) => {
-            reject(err);
-          });
-        });
-      }
-      logger.info('Admin user already exists');
-    }).then((created) => {
-      if (created) {
-        logger.info('Admin user created');
-      }
-    }).catch((err) => {
-      logger.error(err);
-    });
+            },
+            {
+              principalType: app.models.RoleMapping.USER,
+              principalId: user.id,
+              roleId: results[0].id,
+            },
+          );
+          logger.info('Admin user created');
+        } else {
+          logger.info('Admin user already exists');
+        }
+      });
+    } catch (e) {
+      logger.error(e);
+    }
   }
 
 }

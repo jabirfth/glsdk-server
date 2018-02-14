@@ -7,7 +7,7 @@
   },
   "scripts": {
     "lint": "tslint --project tslint.json && eslint .",
-    "start": "node server/server.js",
+    "start": "mkdir -p /tmp/storage && node server/server.js",
     "posttest": "npm run lint && nsp check | cat",
     "test": "NODE_ENV=testing npm run start",
     "watch": "nodemon server/server.js"
@@ -44,7 +44,7 @@
     "strong-error-handler": "^2.0.0",
     "supertest": "^3.0.0",
     "ts-node": "^4.1.0",
-    "typescript": "^2.6.2",
+    "typescript": "^2.8.0-dev.20180214",
     "winston": "^2.4.0",
     "winston-express-middleware": "^0.1.0"
   },
