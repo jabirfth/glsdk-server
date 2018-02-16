@@ -72,6 +72,18 @@
   "RoleMapping": {
     "dataSource": "authDB",
     "public": true,
+    "relations": {
+      "role": {
+        "type": "belongsTo",
+        "model": "User",
+        "foreignKey": "principalId"
+      },
+      "user": {
+        "type": "belongsTo",
+        "model": "Role",
+        "foreignKey": "roleId"
+      }
+    },
     "acls": [
       {
         "accessType": "*",
