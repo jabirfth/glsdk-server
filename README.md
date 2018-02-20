@@ -1,6 +1,8 @@
 # glsdk-server
 Loopback (NodeJS) based server for Grand Lyon SDK
 
+[![Build Status](https://travis-ci.org/grandlyon/glsdk-server.svg?branch=master)](https://travis-ci.org/grandlyon/glsdk-server)
+
 ## Description
 
 The app is base on [LoopBack](http://loopback.io) v3.
