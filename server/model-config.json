@@ -142,15 +142,15 @@
     "public": true
   },
   "AgentAssignment": {
-    "dataSource": "federalDB",
+    "dataSource": "authDB",
     "public": true
   },
   "Order": {
-    "dataSource": "federalDB",
+    "dataSource": "authDB",
     "public": true
   },
   "OrderContribution": {
-    "dataSource": "federalDB",
+    "dataSource": "authDB",
     "public": true
   }
 }

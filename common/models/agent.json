@@ -4,7 +4,7 @@
     "idInjection": false,
     "mysql": {
       "schema": "grandlyon",
-      "table": "fed_agent"
+      "table": "FED_AGENT"
     }
   },
   "properties": {

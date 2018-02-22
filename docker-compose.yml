@@ -2,11 +2,11 @@ version: "3.0"
 
 services:
 
-  db:
+  dbfederal:
     image: mariadb:10.3
     restart: unless-stopped
     volumes:
-      - db-data:/var/lib/mysql
+      - dbfederal-data:/var/lib/mysql
       - ../dump.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
       - MYSQL_DATABASE=grandlyon
@@ -16,13 +16,35 @@ services:
     ports:
       - "3306:3306"
 
-  phpmyadmin:
+  dbauth:
+    image: mariadb:10.3
+    restart: unless-stopped
+    volumes:
+      - dbauth-data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=grandlyon
+      - MYSQL_USER=db_user
+      - MYSQL_PASSWORD=P@ssw0rd
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    ports:
+      - "3307:3306"
+
+  phpmyadminfederal:
     image: phpmyadmin/phpmyadmin:4.7
     restart: unless-stopped
     environment:
-      - PMA_HOST=db
+      - PMA_HOST=dbfederal
     ports:
       - "8080:80"
 
+  phpmyadminauth:
+    image: phpmyadmin/phpmyadmin:4.7
+    restart: unless-stopped
+    environment:
+      - PMA_HOST=dbauth
+    ports:
+      - "8081:80"
+
 volumes:
-  db-data:
+  dbfederal-data:
+  dbauth-data:
