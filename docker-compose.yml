@@ -16,11 +16,11 @@ services:
     ports:
       - "3306:3306"
 
-  dbauth:
+  dbapp:
     image: mariadb:10.3
     restart: unless-stopped
     volumes:
-      - dbauth-data:/var/lib/mysql
+      - dbapp-data:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=grandlyon
       - MYSQL_USER=db_user
@@ -37,14 +37,14 @@ services:
     ports:
       - "8080:80"
 
-  phpmyadminauth:
+  phpmyadminapp:
     image: phpmyadmin/phpmyadmin:4.7
     restart: unless-stopped
     environment:
-      - PMA_HOST=dbauth
+      - PMA_HOST=dbapp
     ports:
       - "8081:80"
 
 volumes:
   dbfederal-data:
-  dbauth-data:
+  dbapp-data:

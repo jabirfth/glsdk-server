@@ -4,7 +4,7 @@
     "idInjection": false,
     "mysql": {
       "schema": "grandlyon",
-      "table": "fed_grade"
+      "table": "Grade"
     }
   },
   "properties": {

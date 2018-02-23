@@ -18,7 +18,7 @@ const config = {
     provider: 'filesystem',
     root: process.env.FILE_STORAGE_PATH || '/tmp/storage',
   },
-  authDB: {
+  appDB: {
     connector: environment === 'testing' ? 'memory' : 'mysql',
     host: process.env.AUTH_DB_HOST || 'localhost',
     port: process.env.AUTH_DB_PORT ? parseInt(process.env.AUTH_DB_PORT, 10) : 3306,
@@ -35,7 +35,7 @@ logger.info(
       config,
       {
         federalDB: Object.assign({}, config.federalDB, { password: '********' }),
-        authDB: Object.assign({}, config.authDB, { password: '********' }),
+        appDB: Object.assign({}, config.appDB, { password: '********' }),
       },
     ),
   ),

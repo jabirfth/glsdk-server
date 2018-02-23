@@ -15,6 +15,7 @@
       "ACL",
       "RoleMapping",
       "Role",
+      "AgentRank",
       "AgentAssignment",
       "Order",
       "OrderContribution"

@@ -12,7 +12,7 @@ class CreateDefaultAdmin {
 
   async createAdmin(app: any) {
     try {
-      await app.dataSources.authDB.transaction(async (models) => {
+      await app.dataSources.appDB.transaction(async (models) => {
         const { User, Role, RoleMapping } = models;
         const results = await User.findOrCreate(
           {
