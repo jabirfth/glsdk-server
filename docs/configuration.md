@@ -16,10 +16,10 @@ Environnement variable use on file ```server/datasources.local.ts```
  1.2 database for custom app data (users, app data, ... )
       
 ```
-      - AUTH_DB_HOST=auth-db
-      - AUTH_DB_NAME=${AUTH_DB_NAME}
-      - AUTH_DB_USER=${AUTH_DB_USER}
-      - AUTH_DB_PASSWORD=${AUTH_DB_PASSWORD}
+      - APP_DB_HOST=app-db
+      - APP_DB_NAME=${APP_DB_NAME}
+      - APP_DB_USER=${APP_DB_USER}
+      - APP_DB_PASSWORD=${APP_DB_PASSWORD}
 ```
  1.3 shared folder
 ```
