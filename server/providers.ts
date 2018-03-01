@@ -1,4 +1,8 @@
+const { Logger } = require('./utils/logger');
+
 const applicationBaseUrl = process.env.BASE_URL || 'http://localhost:3000';
+
+const logger = new Logger('Application Providers');
 
 function requireEnvironmentVariables(varNames) {
   varNames.forEach((varName) => {
@@ -66,5 +70,7 @@ if (process.env.FRANCE_CONNECT_BASE_URL) {
     scope: ['email', 'openid', 'profile', 'address', 'phone'],
   };
 }
+
+logger.info(JSON.stringify(providers));
 
 module.exports = providers;

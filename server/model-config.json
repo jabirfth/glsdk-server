@@ -18,19 +18,19 @@
     ]
   },
   "ApplicationCredential": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": false
   },
   "UserCredential": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": false
   },
   "UserIdentity": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": false
   },
   "User": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": true,
     "relations": {
       "roles": {
@@ -62,15 +62,15 @@
     ]
   },
   "AccessToken": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": false
   },
   "ACL": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": true,
     "relations": {
       "role": {
@@ -100,7 +100,7 @@
     ]
   },
   "Role": {
-    "dataSource": "authDB",
+    "dataSource": "appDB",
     "public": true,
     "acls": [
       {
@@ -122,7 +122,7 @@
     "public": true
   },
   "AgentRank": {
-    "dataSource": "federalDB",
+    "dataSource": "appDB",
     "public": true
   },
   "Road": {
@@ -142,15 +142,15 @@
     "public": true
   },
   "AgentAssignment": {
-    "dataSource": "federalDB",
+    "dataSource": "appDB",
     "public": true
   },
   "Order": {
-    "dataSource": "federalDB",
+    "dataSource": "appDB",
     "public": true
   },
   "OrderContribution": {
-    "dataSource": "federalDB",
+    "dataSource": "appDB",
     "public": true
   }
 }

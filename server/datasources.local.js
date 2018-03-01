@@ -18,13 +18,13 @@ const config = {
     provider: 'filesystem',
     root: process.env.FILE_STORAGE_PATH || '/tmp/storage',
   },
-  authDB: {
+  appDB: {
     connector: environment === 'testing' ? 'memory' : 'mysql',
-    host: process.env.AUTH_DB_HOST || 'localhost',
-    port: process.env.AUTH_DB_PORT ? parseInt(process.env.AUTH_DB_PORT, 10) : 3306,
-    database: process.env.AUTH_DB_NAME || 'grandlyon',
-    user: process.env.AUTH_DB_USER || 'db_user',
-    password: process.env.AUTH_DB_PASSWORD || 'P@ssw0rd',
+    host: process.env.APP_DB_HOST || 'localhost',
+    port: process.env.APP_DB_PORT ? parseInt(process.env.APP_DB_PORT, 10) : 3306,
+    database: process.env.APP_DB_NAME || 'grandlyon',
+    user: process.env.APP_DB_USER || 'db_user',
+    password: process.env.APP_DB_PASSWORD || 'P@ssw0rd',
   },
 };
 
@@ -35,7 +35,7 @@ logger.info(
       config,
       {
         federalDB: Object.assign({}, config.federalDB, { password: '********' }),
-        authDB: Object.assign({}, config.authDB, { password: '********' }),
+        appDB: Object.assign({}, config.appDB, { password: '********' }),
       },
     ),
   ),
