@@ -10,7 +10,9 @@ class Authentication {
 
   constructor(app: any) {
     app.enableAuth();
-    this.initPassportAuthentication(app);
+    if (providers) {
+      this.initPassportAuthentication(app);
+    }
   }
 
   private patchPassportConfiguratorForLdap(passportConfigurator): void {

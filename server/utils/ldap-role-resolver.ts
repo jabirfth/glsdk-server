@@ -3,7 +3,7 @@ import 'rxjs/add/observable/bindNodeCallback';
 import 'rxjs/add/operator/map';
 import { providers } from '../providers';
 
-const ldapProviderOptions = providers.ldap;
+const ldapProviderOptions = providers ? providers.ldap : null;
 
 export class LdapRoleResolver {
 
@@ -18,18 +18,21 @@ export class LdapRoleResolver {
   }
 
   private resolveLdapUserRoles(userId: number): Observable<string[]> {
-    const findOneUserIdentity: (filter) => Observable<string[]> =
+    if (ldapProviderOptions) {
+      const findOneUserIdentity: (filter) => Observable<string[]> =
       Observable.bindNodeCallback(this.app.models.UserIdentity.findOne)
         .bind(this.app.models.UserIdentity);
-    return findOneUserIdentity({ where: { userId } }).map((userIdentity: any) => {
-      if (userIdentity && userIdentity.provider === 'ldap') {
-        const existingRoles = Object.getOwnPropertyNames(ldapProviderOptions.rolesMapping);
-        return existingRoles.filter((role) => {
-          const ldapGroups = ldapProviderOptions.rolesMapping[role];
-          return this.isMemberOfAtLeastOneLdapGroup(userIdentity, ldapGroups);
-        });
-      }
-    });
+      return findOneUserIdentity({ where: { userId } }).map((userIdentity: any) => {
+        if (userIdentity && userIdentity.provider === 'ldap') {
+          const existingRoles = Object.getOwnPropertyNames(ldapProviderOptions.rolesMapping);
+          return existingRoles.filter((role) => {
+            const ldapGroups = ldapProviderOptions.rolesMapping[role];
+            return this.isMemberOfAtLeastOneLdapGroup(userIdentity, ldapGroups);
+          });
+        }
+      });
+    }
+    return Observable.of([]);
   }
 
   private isMemberOfAtLeastOneLdapGroup(userIdentity: any, ldapGroups: string[]) {
