@@ -24,8 +24,8 @@ This app includes :
 ## Install
 
 ```
-npm run install
-npm run start
+npm install
+npm start
 ```
 
 ## Documentation
@@ -34,5 +34,5 @@ npm run start
  * [How to add custom route ?](docs/routes.md)
  * [How to add custom code on startup ?](docs/bootinit.md)
  
-#Configuration
- [Configuration](docs/configuration.md)
+# Configuration
+[Configuration](docs/configuration.md)
