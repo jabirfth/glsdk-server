@@ -12,7 +12,7 @@ class UserExtender {
     User.replaceRoles = async (userId, roleIds, cb) => {
       try {
         logger.info(`Replacing User[id=${userId}] roles with ${roleIds}`);
-        await RoleMapping.deleteAll({ where: { principalId: userId } });
+        await RoleMapping.destroyById(userId);
         const roles = await Role.find({ where: { id: { inq: roleIds } } });
         const roleMappings = roles.map(role => ({
           roleId: role.id,

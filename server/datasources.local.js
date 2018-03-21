@@ -21,7 +21,7 @@ const config = {
   appDB: {
     connector: environment === 'testing' ? 'memory' : 'mysql',
     host: process.env.APP_DB_HOST || 'localhost',
-    port: process.env.APP_DB_PORT ? parseInt(process.env.APP_DB_PORT, 10) : 3306,
+    port: process.env.APP_DB_PORT ? parseInt(process.env.APP_DB_PORT, 10) : 3307,
     database: process.env.APP_DB_NAME || 'grandlyon',
     user: process.env.APP_DB_USER || 'db_user',
     password: process.env.APP_DB_PASSWORD || 'P@ssw0rd',
