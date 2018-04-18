@@ -1,6 +1,6 @@
 import { BootScript } from '@mean-expert/boot-script';
 import { PassportConfigurator } from 'loopback-component-passport';
-import { providers } from '../providers';
+import * as providers from '../providers';
 import { Logger } from '../utils/logger';
 
 const logger = new Logger('Authentication BootScript');
@@ -10,9 +10,7 @@ class Authentication {
 
   constructor(app: any) {
     app.enableAuth();
-    if (providers) {
-      this.initPassportAuthentication(app);
-    }
+    this.initPassportAuthentication(app);
   }
 
   private patchPassportConfiguratorForLdap(passportConfigurator): void {
