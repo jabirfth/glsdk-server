@@ -1,6 +1,6 @@
 import { BootScript } from '@mean-expert/boot-script';
 import { PassportConfigurator } from 'loopback-component-passport';
-import * as providers from '../providers';
+import { providers } from '../providers';
 import { Logger } from '../utils/logger';
 
 const logger = new Logger('Authentication BootScript');

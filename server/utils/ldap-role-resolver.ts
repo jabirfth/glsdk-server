@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/bindNodeCallback';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/of';
 import { providers } from '../providers';
 
 const ldapProviderOptions = providers ? providers.ldap : null;

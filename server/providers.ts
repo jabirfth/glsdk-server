@@ -12,7 +12,7 @@ function requireEnvironmentVariables(varNames) {
   });
 }
 
-const providers = {};
+export const providers = {};
 
 if (process.env.LDAP_SERVER_URL) {
   requireEnvironmentVariables([
@@ -73,4 +73,3 @@ if (process.env.FRANCE_CONNECT_BASE_URL) {
 
 logger.info(JSON.stringify(providers));
 
-module.exports = providers;
