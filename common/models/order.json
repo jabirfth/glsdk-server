@@ -1,8 +1,6 @@
 {
   "name": "Order",
   "base": "PersistedModel",
-  "mixins": {
-  },
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -32,25 +30,25 @@
   "acls": [
     {
       "accessType": "*",
-      "principalType": "Role",
+      "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "DENY"
     },
     {
       "accessType": "READ",
-      "principalType": "Role",
+      "principalType": "ROLE",
       "principalId": "agent",
       "permission": "ALLOW"
     },
     {
       "accessType": "WRITE",
-      "principalType": "Role",
+      "principalType": "ROLE",
       "principalId": "agent",
       "permission": "ALLOW"
     },
     {
       "accessType": "WRITE",
-      "principalType": "Role",
+      "principalType": "ROLE",
       "principalId": "admin",
       "permission": "ALLOW"
     }
